@@ -8,8 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Controller
 public class MainController {
+    @Value("${remote.server.url}")
+    private String remoteServerUrl;
+
     @GetMapping({ "/", "/home", "/main" })
     public ModelAndView main(ModelAndView modelAndView) {
         // 현재 사용자 Authentication 객체 가져오기
@@ -33,6 +38,10 @@ public class MainController {
             }
         }
         modelAndView.addObject("name", "Yojulab!");
+
+        modelAndView.addObject("remoteServerUrl", remoteServerUrl);
+        modelAndView.addObject("myimage", "thermometer.png");
+
         modelAndView.setViewName("/WEB-INF/views/main.jsp");
         return modelAndView;
     }
