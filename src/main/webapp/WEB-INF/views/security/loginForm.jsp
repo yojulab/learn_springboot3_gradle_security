@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -14,9 +15,15 @@
 
     <div class="container row">
         <div class="col-md-6 mx-auto">
+        <% 
+        String fail = request.getParameter("fail");
+        %>
+        
+        <% if ("true".equals(fail)) { %>            
         <div><font color="red"> Login Fail ! </font></div>
+        <% } %>
         <form class="form-signin" method="post" action="/login">
-            <h2 class="form-signin-heading">We Made Please sign in</h2>
+            <h2 class="form-signin-heading">We Made Please sign in "<%= fail %>"</h2>
             <p>
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""

@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,12 +20,18 @@
     %>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-12">
                 <h2>Search</h2>
                 <div class="input-group mb-3">
                     <input type="text" value="<%= name %>" class="form-control" placeholder="Search..." id="keydownEnter">
                     <button class="btn btn-primary" type="button" onclick="carTableBody()">Go</button>
                 </div>
+            </div>
+            <div class="col-12">
+                <div>Spring Security Area</div>
+                <sec:authentication property="principal" var="userDetailsBean" />
+                <div> userDetails : ${userDetailsBean} </div>
+                <div> Role List : ${userDetailsBean == "anonymousUser" ? "Not Yet!" : userDetailsBean.authorities} </div>
             </div>
         </div>
     </div>
