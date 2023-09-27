@@ -16,9 +16,9 @@
 
     <!-- Main Content -->
 
-    <form action="/files/insertMulti" method="post" id="insertForm" enctype="multipart/form-data">
-        <div class="container mt-5">
-            <div class="container mt-4">
+    <div class="container mt-5">
+        <div class="container mt-4">
+                <form action="/files/insertMulti" method="post" id="insertForm" enctype="multipart/form-data">
                 <div class="row">
                     <h1>Insert Form</h1>
 
@@ -37,8 +37,8 @@
                     for (int i = 0; i < 2; i += 1) {
                     %>
                     <div class="mb-3">
-                        <label for="fileUpload_${i}" class="form-label">File Upload</label>
-                        <input type="file" class="form-control-file" id="fileUpload_${i}" name="fileUpload_${i}" />
+                        <label for="fileUpload_<%= i %>" class="form-label">File Upload</label>
+                        <input type="file" class="form-control-file" id="fileUpload_<%= i %>" name="fileUpload_<%= i %>" />
                     </div>
                     <%
                     }
@@ -47,10 +47,10 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
 
                 </div>
+            </form>
             </div>
         </div>
 
-    </form>
 
     <!-- Footer -->
     <%@ include file="/WEB-INF/views/commons/footer.jsp" %>

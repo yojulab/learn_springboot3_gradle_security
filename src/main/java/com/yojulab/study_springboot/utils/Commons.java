@@ -1,9 +1,11 @@
 package com.yojulab.study_springboot.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class Commons {
@@ -30,4 +32,12 @@ public class Commons {
         }        
         return true;
     }
+
+     public void saveFile(MultipartFile file, String fileName) throws IOException {
+         if (!file.isEmpty()) {
+             byte[] bytes = file.getBytes();
+             File savedFile = new File(fileName + ".jpg"); // or any other format you wish to save in.
+             file.transferTo(savedFile);
+         }
+     }    
 }

@@ -37,16 +37,20 @@
 
                     HashMap attachfile = null;
                     for (int i = 0; i < 2; i += 1) {
+                        String fileUnique = "";
+                        String fileName = "";
                         if ((attachfiles.size()-1 >= i) && (attachfiles.get(i) != null)) {
                             attachfile = new HashMap();
                             attachfile = (HashMap)attachfiles.get(i);
-                            String fileUnique = (String)attachfile.get("FILE_UNIQUE");
-                            String fileName = (String)attachfile.get("FILE_NAME");
+                            fileUnique = (String)attachfile.get("FILE_UNIQUE");
+                            fileName = (String)attachfile.get("FILE_NAME");
                         }
                     %>
                     <div class="mb-3">
-                        <label for="fileUpload_${i}" class="form-label">File Upload</label>
-                        <input type="file" class="form-control-file" id="fileUpload_${i}" name="fileUpload"  value="${fileName}" />
+
+                        <label for="fileUpload_<%= i %>" class="form-label">File Upload</label>
+                        <input type="file" class="form-control-file" id="fileUpload_<%= i %>" name="fileUpload_<%= i %>" value="<%= fileName %>"/>
+                        <span><%= fileUnique %>, <%= fileName %></span>
                     </div>
                     <%
                     }

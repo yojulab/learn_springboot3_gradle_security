@@ -88,4 +88,49 @@ public class FilesController {
         return modelAndView;
     }
 
+     @RequestMapping(value = { "/updateMulti" }, method = RequestMethod.POST)
+    public ModelAndView updateMulti(MultipartHttpServletRequest multipartHttpServletRequest,
+            @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
+
+        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
+
+        // 폴더 생성
+        String storePath = rootFileFolder;
+
+        if (fileNames.hasNext()){
+            storePath = storePath + commons.getUniqueSequence() + "\\";
+            commons.makeFolder(storePath);
+        }
+        
+
+        Map attachfile = null;
+        List attachfiles = new ArrayList();
+
+        while (fileNames.hasNext()) {
+            String fileName = fileNames.next();
+            MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
+            String originalFilename = multipartFile.getOriginalFilename();
+
+            if (originalFilename != null && multipartFile.getSize() > 0){
+                String storePathFileName = storePath + originalFilename;
+                multipartFile.transferTo(new File(storePathFileName));
+                // 파일 저장 시 중복 유의
+                attachfile = new HashMap();
+
+                attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
+                attachfile.put("FILE_NAME", originalFilename);
+                attachfiles.add(attachfile);
+            }
+
+        }
+        modelAndView.addObject("title", params.get("title"));
+        modelAndView.addObject("content", params.get("content"));
+
+        modelAndView.addObject("remoteServerUrl", remoteServerUrl);
+        modelAndView.addObject("attachfiles", attachfiles);
+
+        String viewName = "/WEB-INF/views/files/update_multi.jsp";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
 }
