@@ -69,7 +69,7 @@
     <script>
         let quill = new Quill('#editor', {
             theme: 'snow'
-        });
+        }); // 대상 지정과 css 적용
 
         quill.setContents(${content});
 
