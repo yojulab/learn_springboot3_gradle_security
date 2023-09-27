@@ -29,6 +29,9 @@ public class FilesController {
     @Value("${remote.server.url}")
     private String remoteServerUrl;
 
+    @Value("${root.file.folder}")
+    private String rootFileFolder;
+
     @Autowired
     Commons commons;
 
@@ -45,9 +48,18 @@ public class FilesController {
 
         Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
 
-        String storePath = "C:\\TEMP\\";
+        // 폴더 생성
+        String storePath = rootFileFolder;
+
+        if (fileNames.hasNext()){
+            storePath = storePath + commons.getUniqueSequence() + "\\";
+            commons.makeFolder(storePath);
+        }
+        
+
         Map attachfile = null;
         List attachfiles = new ArrayList();
+
         while (fileNames.hasNext()) {
             String fileName = fileNames.next();
             MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
