@@ -49,9 +49,9 @@
                         <input type="file" class="form-control-file" id="fileUpload_0" name="multipartFile"/>
                         <span><a href="${remoteServerUrl}<%= fileName %>"><%= fileUnique %></a></span>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
+                    <div class="d-inline-block">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>

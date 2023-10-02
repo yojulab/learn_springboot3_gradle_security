@@ -43,14 +43,14 @@ public class FilesController {
     }
 
      @RequestMapping(value = { "/insert" }, method = RequestMethod.POST)
-    public ModelAndView insert(@RequestParam("multipartFile") MultipartFile multipartFile,
+    public ModelAndView insert(@RequestParam(value="multipartFile", required=false) MultipartFile multipartFile,
             @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
         // 폴더 생성
         String storePath = "";
         
         Map attachfile = null;
-        if (!multipartFile.isEmpty()){
+        if (multipartFile != null && !multipartFile.isEmpty()){
             storePath = rootFileFolder + commons.getUniqueSequence() + "\\";
             commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();
@@ -77,14 +77,14 @@ public class FilesController {
     }
 
      @RequestMapping(value = { "/update" }, method = RequestMethod.POST)
-    public ModelAndView update(@RequestParam("multipartFile") MultipartFile multipartFile,
+    public ModelAndView update(@RequestParam(value="multipartFile", required=false) MultipartFile multipartFile,
             @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
         // 폴더 생성
         String storePath = "";
         
         Map attachfile = null;
-        if (!multipartFile.isEmpty()){      // 값이 있다는 것은 수정 의미
+        if (multipartFile != null && !multipartFile.isEmpty()){      // 값이 있다는 것은 수정 의미
             storePath = (String) params.get("storePath");
             commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();

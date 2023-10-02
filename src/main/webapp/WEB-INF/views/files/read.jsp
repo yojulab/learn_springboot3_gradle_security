@@ -26,7 +26,7 @@
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="${title}">
+                        <input type="text" class="form-control" id="title" name="title" value="${title}" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editor" class="form-label">Content</label>
@@ -48,8 +48,10 @@
                         <span><a href="${remoteServerUrl}<%= fileName %>"><%= fileUnique %></a></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" formaction="/files/form" formmethod="get">Insert</button>
-                    <button type="submit" class="btn btn-primary" formaction="/files/update" formmethod="Post">Update</button>
+                    <div class="d-inline-block">
+                        <button type="submit" class="btn btn-primary" formaction="/files/form" formmethod="get">Insert</button>
+                        <button type="submit" class="btn btn-primary" formaction="/files/update" formmethod="Post">Update</button>
+                    </div>
 
                 </div>
             </div>
@@ -65,10 +67,12 @@
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
         let quill = new Quill('#editor', {
-            theme: 'snow'
+            readOnly: true,
         }); // 대상 지정과 css 적용
 
         quill.setContents(${content});
+        // 다시 수정 가능 상태로 변경하기
+        // quill.enable();
 
         // Set hidden input value before form submission
         let form = document.querySelector('#insertForm');

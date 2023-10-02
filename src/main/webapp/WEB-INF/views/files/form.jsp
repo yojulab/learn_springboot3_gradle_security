@@ -38,8 +38,9 @@
                         <input type="file" class="form-control-file" id="fileUpload_0" name="multipartFile" />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
+                    <div class="d-inline-block">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </form>
             </div>
