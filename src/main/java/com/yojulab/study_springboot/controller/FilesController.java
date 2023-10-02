@@ -35,102 +35,79 @@ public class FilesController {
     @Autowired
     Commons commons;
 
-    @RequestMapping(value = { "/formMulti" }, method = RequestMethod.GET)
-    public ModelAndView formMulti(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/views/files/form_multi.jsp";
+    @RequestMapping(value = { "/form" }, method = RequestMethod.GET)
+    public ModelAndView form(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        String viewName = "/WEB-INF/views/files/form.jsp";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
 
-     @RequestMapping(value = { "/insertMulti" }, method = RequestMethod.POST)
-    public ModelAndView insertMulti(MultipartHttpServletRequest multipartHttpServletRequest,
+     @RequestMapping(value = { "/insert" }, method = RequestMethod.POST)
+    public ModelAndView insert(@RequestParam("multipartFile") MultipartFile multipartFile,
             @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
-        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
-
         // 폴더 생성
-        String storePath = rootFileFolder;
-
-        if (fileNames.hasNext()){
-            storePath = storePath + commons.getUniqueSequence() + "\\";
-            commons.makeFolder(storePath);
-        }
+        String storePath = "";
         
-
         Map attachfile = null;
-        List attachfiles = new ArrayList();
-
-        while (fileNames.hasNext()) {
-            String fileName = fileNames.next();
-            MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
+        if (!multipartFile.isEmpty()){
+            storePath = rootFileFolder + commons.getUniqueSequence() + "\\";
+            commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();
+            String storePathFileName = storePath + originalFilename;
+            multipartFile.transferTo(new File(storePathFileName));
+            // 파일 저장 시 중복 유의
+            attachfile = new HashMap();
 
-            if (originalFilename != null && multipartFile.getSize() > 0){
-                String storePathFileName = storePath + originalFilename;
-                multipartFile.transferTo(new File(storePathFileName));
-                // 파일 저장 시 중복 유의
-                attachfile = new HashMap();
-
-                attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
-                attachfile.put("FILE_NAME", originalFilename);
-                attachfiles.add(attachfile);
-            }
-
+            attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
+            attachfile.put("FILE_NAME", originalFilename);
         }
+        // 각 정보를 DB에 저장 필요
+
         modelAndView.addObject("title", params.get("title"));
         modelAndView.addObject("content", params.get("content"));
 
         modelAndView.addObject("remoteServerUrl", remoteServerUrl);
-        modelAndView.addObject("attachfiles", attachfiles);
+        modelAndView.addObject("storePath", storePath);
+        modelAndView.addObject("attachfile", attachfile);
 
-        String viewName = "/WEB-INF/views/files/update_multi.jsp";
+        String viewName = "/WEB-INF/views/files/update.jsp";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
 
-     @RequestMapping(value = { "/updateMulti" }, method = RequestMethod.POST)
-    public ModelAndView updateMulti(MultipartHttpServletRequest multipartHttpServletRequest,
+     @RequestMapping(value = { "/update" }, method = RequestMethod.POST)
+    public ModelAndView update(@RequestParam("multipartFile") MultipartFile multipartFile,
             @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
-        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
-
         // 폴더 생성
-        String storePath = rootFileFolder;
-
-        if (fileNames.hasNext()){
-            storePath = storePath + commons.getUniqueSequence() + "\\";
-            commons.makeFolder(storePath);
-        }
+        String storePath = "";
         
-
         Map attachfile = null;
-        List attachfiles = new ArrayList();
-
-        while (fileNames.hasNext()) {
-            String fileName = fileNames.next();
-            MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
+        if (!multipartFile.isEmpty()){      // 값이 있다는 것은 수정 의미
+            storePath = (String) params.get("storePath");
+            commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();
+            String storePathFileName = storePath + originalFilename;
+            multipartFile.transferTo(new File(storePathFileName));
+            // 파일 저장 시 중복 유의
+            attachfile = new HashMap();
 
-            if (originalFilename != null && multipartFile.getSize() > 0){
-                String storePathFileName = storePath + originalFilename;
-                multipartFile.transferTo(new File(storePathFileName));
-                // 파일 저장 시 중복 유의
-                attachfile = new HashMap();
-
-                attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
-                attachfile.put("FILE_NAME", originalFilename);
-                attachfiles.add(attachfile);
-            }
-
+            attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
+            attachfile.put("FILE_NAME", originalFilename);
         }
+        // 각 정보를 DB와 비교 수정 필요
+
         modelAndView.addObject("title", params.get("title"));
         modelAndView.addObject("content", params.get("content"));
 
         modelAndView.addObject("remoteServerUrl", remoteServerUrl);
-        modelAndView.addObject("attachfiles", attachfiles);
+        modelAndView.addObject("storePath", storePath);
+        modelAndView.addObject("attachfile", attachfile);
 
-        String viewName = "/WEB-INF/views/files/update_multi.jsp";
+        String viewName = "/WEB-INF/views/files/read.jsp";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
+
 }
