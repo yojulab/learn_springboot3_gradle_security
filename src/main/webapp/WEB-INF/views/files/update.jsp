@@ -41,14 +41,18 @@
                     if(attachfile != null){
                         fileUnique = (String)attachfile.get("FILE_UNIQUE");
                         fileName = (String)attachfile.get("FILE_NAME");
-                    }
                     %>
                     <div class="mb-3">
 
                         <label for="fileUpload_0" class="form-label">File Upload</label>
                         <input type="file" class="form-control-file" id="fileUpload_0" name="multipartFile"/>
-                        <span><a href="${remoteServerUrl}<%= fileName %>"><%= fileUnique %></a></span>
+                        <span><a href="${remoteServerUrl}<%= fileUnique %>/<%= fileName %>"><%= fileUnique %></a></span>
                     </div>
+                    <input type="hidden" name="fileUnique" value="<%= fileUnique %>">
+                    <%
+                    }
+                    %>
+                    
                     <div class="d-inline-block">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

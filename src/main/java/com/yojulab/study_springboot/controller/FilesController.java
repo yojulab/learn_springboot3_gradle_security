@@ -35,6 +35,7 @@ public class FilesController {
     @Autowired
     Commons commons;
 
+    //http://127.0.0.1:8080/files/form
     @RequestMapping(value = { "/form" }, method = RequestMethod.GET)
     public ModelAndView form(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         String viewName = "/WEB-INF/views/files/form.jsp";
@@ -51,7 +52,8 @@ public class FilesController {
         
         Map attachfile = null;
         if (multipartFile != null && !multipartFile.isEmpty()){
-            storePath = rootFileFolder + commons.getUniqueSequence() + "\\";
+            String fileUnique = commons.getUniqueSequence();
+            storePath = rootFileFolder + fileUnique + "\\";
             commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();
             String storePathFileName = storePath + originalFilename;
@@ -59,7 +61,7 @@ public class FilesController {
             // 파일 저장 시 중복 유의
             attachfile = new HashMap();
 
-            attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
+            attachfile.put("FILE_UNIQUE", fileUnique);
             attachfile.put("FILE_NAME", originalFilename);
         }
         // 각 정보를 DB에 저장 필요
@@ -86,6 +88,8 @@ public class FilesController {
         Map attachfile = null;
         if (multipartFile != null && !multipartFile.isEmpty()){      // 값이 있다는 것은 수정 의미
             storePath = (String) params.get("storePath");
+            String fileUnique = (String) params.get("fileUnique");
+
             commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();
             String storePathFileName = storePath + originalFilename;
@@ -93,7 +97,7 @@ public class FilesController {
             // 파일 저장 시 중복 유의
             attachfile = new HashMap();
 
-            attachfile.put("FILE_UNIQUE", commons.getUniqueSequence());
+            attachfile.put("FILE_UNIQUE", fileUnique);
             attachfile.put("FILE_NAME", originalFilename);
         }
         // 각 정보를 DB와 비교 수정 필요
