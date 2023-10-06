@@ -24,6 +24,7 @@
 
     <div class="container mt-4">
         <div class="row">
+            ${ barDataJson }
             <!-- Bar Chart -->
             <div class="col" id="barChart"></div>
 
@@ -34,10 +35,6 @@
             <div class="col-sm-6" id="lineChart"></div>
         </div>
 
-        <!-- Google Maps Container -->
-        <div class="row">
-            <div class="col" id="map"></div>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -54,15 +51,18 @@
         // Set a callback to run when the Google Visualization API is loaded
         google.charts.setOnLoadCallback(drawCharts);
 
+        let barDataArray = [];
+        barDataArray = ${ barDataJson };
         // Function to draw the charts
         function drawCharts() {
             // Data for Bar Chart
-            let barData = google.visualization.arrayToDataTable([
-                ['Category', 'Value'],
-                ['Category A', 10],
-                ['Category B', 20],
-                ['Category C', 15]
-            ]);
+            // let barData = google.visualization.arrayToDataTable([
+            //     ['Category', 'Value'],
+            //     ['Category A', 10],
+            //     ['Category B', 20],
+            //     ['Category C', 15]
+            // ]);
+            let barData = google.visualization.arrayToDataTable(barDataArray);
 
             // Options for Bar Chart
             let barOptions = {
@@ -110,47 +110,10 @@
             lineChart.draw(lineData, lineOptions);
         }
 
-        // Coordinates and Location Names
-        let locations = [
-            { lat: 37.5666791, lng: 126.9782914, name: '서울' },
-            { lat: 37.566535, lng: 126.9779692, name: '광화문' },
-            { lat: 37.5586867, lng: 126.9782364, name: '명동' },
-            { lat: 37.5551483, lng: 126.9707136, name: '남대문 시장' },
-            { lat: 37.5617981, lng: 127.0071515, name: '강남역' },
-            { lat: 37.5701391, lng: 127.0079479, name: '삼성동' },
-            { lat: 37.5296212, lng: 127.0325739, name: '잠실' }
-        ];
-
-        // Initialize and Display the Map
-        function initMap() {
-            let map = new google.maps.Map(document.querySelector('#map'), {
-                zoom: 12,
-                center: { lat: 37.5666791, lng: 126.9782914 } // Seoul Coordinates
-            });
-
-            // Add Markers and Info Windows
-            for (let i = 0; i < locations.length; i++) {
-                let marker = new google.maps.Marker({
-                    position: locations[i],
-                    map: map,
-                    title: locations[i].name
-                });
-
-                let infowindow = new google.maps.InfoWindow({
-                    content: locations[i].name
-                });
-
-                marker.addListener('click', function () {
-                    infowindow.open(map, this);
-                });
-            }
-        }
     </script>
 
     <!-- Bootstrap Bundle with Popper.js and Bootstrap JS -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
-    <!-- Google Maps API Script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 
 </body>
 
