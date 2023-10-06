@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <button class="nav-link" formaction="/files/form">file form</button>
                     </li>
+                    <li class="nav-item">
+                        <button class="nav-link" formaction="/charts/statistics">various Charts</button>
+                    </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
                         <button class="nav-link" formaction="/admin">Admin</button>
