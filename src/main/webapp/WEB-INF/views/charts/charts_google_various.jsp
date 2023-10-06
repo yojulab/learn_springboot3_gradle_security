@@ -49,7 +49,6 @@
         // Set a callback to run when the Google Visualization API is loaded
         google.charts.setOnLoadCallback(drawCharts);
 
-        let barDataJson = ${ barDataJson };
         // Function to draw the charts
         function drawCharts() {
             // Data for Bar Chart
@@ -59,7 +58,7 @@
             //     ['Category B', 20],
             //     ['Category C', 15]
             // ]);
-            let barData = new google.visualization.arrayToDataTable(barDataJson);
+            let barData = new google.visualization.arrayToDataTable(${ barDataJson });
             // Error Message in javascript : 실수 데이터 타입 정확히 넘기기
             // Data column(s) for axis #0 cannot be of type string×
 
