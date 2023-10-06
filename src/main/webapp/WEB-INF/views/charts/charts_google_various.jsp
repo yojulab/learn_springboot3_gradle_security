@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
     <!-- Google Charts API -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <style>
@@ -24,7 +23,6 @@
 
     <div class="container mt-4">
         <div class="row">
-            ${ barDataJson }
             <!-- Bar Chart -->
             <div class="col" id="barChart"></div>
 
@@ -51,8 +49,7 @@
         // Set a callback to run when the Google Visualization API is loaded
         google.charts.setOnLoadCallback(drawCharts);
 
-        let barDataArray = [];
-        barDataArray = ${ barDataJson };
+        let barDataJson = ${ barDataJson };
         // Function to draw the charts
         function drawCharts() {
             // Data for Bar Chart
@@ -62,7 +59,7 @@
             //     ['Category B', 20],
             //     ['Category C', 15]
             // ]);
-            let barData = google.visualization.arrayToDataTable(barDataArray);
+            let barData = new google.visualization.arrayToDataTable(barDataJson);
 
             // Options for Bar Chart
             let barOptions = {

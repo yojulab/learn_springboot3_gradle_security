@@ -36,12 +36,12 @@ public class ChartsController {
     public ModelAndView form(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         
         // Create the data as an ArrayList of ArrayList
-        List barData = new ArrayList<>();
+        ArrayList barData = new ArrayList<>();
         // Add rows to the barData ArrayList
         barData.add(Arrays.asList("Category", "Value"));
-        barData.add(Arrays.asList("Category A", "10"));
-        barData.add(Arrays.asList("Category B", "20"));
-        barData.add(Arrays.asList("Category C", "15"));
+        barData.add(Arrays.asList("Category A", 10));
+        barData.add(Arrays.asList("Category B", 20));
+        barData.add(Arrays.asList("Category C", 15));
 
         // Convert the ArrayList to a JSON string
         modelAndView.addObject("barDataJson", gson.toJson(barData));
