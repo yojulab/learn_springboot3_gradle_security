@@ -15,6 +15,7 @@ public class SecurityConfiguration {
                 "/css/**", "/js/**", "/", "/home", "/main"
         };
 
+        @SuppressWarnings("removal")
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
                 // None using csrf protection
