@@ -3,13 +3,13 @@
 <mapper namespace="Users">
 	<select id="selectByUID" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM users
+        FROM USERS
         where UNIQUE_ID = #{USERNAME}
 	</select>
 
     <!-- 입력 -->
         <insert id="insert" parameterType="Map">
-        insert into users
+        insert into USERS
         (UNIQUE_ID, NAME, EMAIL, JOB, PASSWORD)
         values
         (#{USERNAME}, #{NAME}, #{EMAIL}, #{JOB}, #{password})

@@ -24,7 +24,7 @@ public class AuthsService {
 
     public Object insert(Map dataMap) {
         List authList = new ArrayList<>();
-        authList.add("ROLE_GUEST");  // default auth
+        authList.add("ROLE_MEMBER");  // default auth
         authList.add(dataMap.get("auth"));  // choosed auth
         dataMap.put("authList", authList);
 
