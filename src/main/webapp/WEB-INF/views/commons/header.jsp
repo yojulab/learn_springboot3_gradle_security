@@ -20,6 +20,11 @@
                     <li class="nav-item">
                         <button class="nav-link" formaction="/charts/statistics">various Charts</button>
                     </li>
+                    <sec:authorize access="isAnonymous()">
+                    <li class="nav-item">
+                        <button class="nav-link" type="button">Needs Auths ROLE_ADMIN or ROLE_MANAGER</button>
+                    </li>
+                    </sec:authorize>                                     
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
                         <button class="nav-link" formaction="/admin">Admin</button>

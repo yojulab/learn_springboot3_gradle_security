@@ -1,4 +1,4 @@
-package com.yojulab.study_springboot.controller;
+package com.yojulab.study_springboot.restapis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,11 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yojulab.study_springboot.service.HelloWorldService;
 
 @Controller
-public class HelloWorldController {
+@RequestMapping("/r")
+public class HelloWorldRestController {
     @Autowired
     HelloWorldService helloWorldService;
 

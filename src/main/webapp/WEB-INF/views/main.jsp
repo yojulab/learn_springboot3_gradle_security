@@ -27,11 +27,57 @@
                     <button class="btn btn-primary" type="button" onclick="carTableBody()">Go</button>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-4">
                 <div>Spring Security Area</div>
                 <sec:authentication property="principal" var="userDetailsBean" />
                 <div> userDetails : ${userDetailsBean} </div>
                 <div> Role List : ${userDetailsBean == "anonymousUser" ? "Not Yet!" : userDetailsBean.authorities} </div>
+            </div>
+            <div class="col-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Link(without CommonsCodeRestController, CarInforsRestController)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorld">/helloWorld</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorldGetRequest/yojulab/U-01">/helloWorldGetRequest/{name}/{Id}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorldResponse/1/10/1">/helloWorldResponse/{currentPage}/{perPage}/{SN}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorldResponseList/1/10/1">/helloWorldResponseList/{currentPage}/{perPage}/{SN}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorldResponseWithService/1/10/1">/helloWorldResponseWithService/{currentPage}/{perPage}/{SN}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorldResponseFake/C001">/helloWorldResponseFake/{companyId}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/r/helloWorldResponseFakeWithExcepation/C001">/helloWorldResponseFakeWithExcepation/{companyId}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

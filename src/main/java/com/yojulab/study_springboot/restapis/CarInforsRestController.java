@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yojulab.study_springboot.service.CarInforsService;
 
 @RestController
+@RequestMapping("/r/CarInfors")
 public class CarInforsRestController {
     @Autowired
     CarInforsService carInforsService;

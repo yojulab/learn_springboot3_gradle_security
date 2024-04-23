@@ -143,7 +143,7 @@ public class CarInforsService {
         HashMap result = new HashMap<>();
         result.put("deleteCount", this.delete(dataMap));
 
-        result.putAll(this.selectSearch(dataMap));
+        result.putAll(this.selectSearchWithPagination(dataMap));
         return result;
     }
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yojulab.study_springboot.service.CarInforsService;
 
 @RestController
-@RequestMapping("/rest/commonsCode")
+@RequestMapping("/r/commonsCode")
 public class CommonsCodeRestController {
     @Autowired
     CarInforsService carInforsService;
