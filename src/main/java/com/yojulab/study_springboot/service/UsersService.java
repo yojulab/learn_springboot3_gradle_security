@@ -21,7 +21,7 @@ public class UsersService {
     Commons commonUtils;
 
     @Autowired
-    AuthsService authsService;
+    AuthsService AUTHSService;
 
         @Autowired
     BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -37,7 +37,7 @@ public class UsersService {
 
     public Object insertWithAuths(Map dataMap){
         Object result = this.insert(dataMap);
-        result = authsService.insert(dataMap);
+        result = AUTHSService.insert(dataMap);
         return result;
     }
 
@@ -50,7 +50,7 @@ public class UsersService {
 
     public Object selectByUIDWithAuths(Map dataMap) {
         Map result = (Map) this.selectByUID(dataMap);
-        result.putAll(authsService.selectWithUSERNAME(dataMap));
+        result.putAll(AUTHSService.selectWithUSERNAME(dataMap));
         return result;
     }
 }

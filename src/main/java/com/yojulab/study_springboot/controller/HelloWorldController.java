@@ -1,4 +1,4 @@
-package com.yojulab.study_springboot.restapis;
+package com.yojulab.study_springboot.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;

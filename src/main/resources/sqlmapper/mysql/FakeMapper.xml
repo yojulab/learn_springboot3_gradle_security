@@ -7,7 +7,7 @@
     // } -->
 	<select id="selectByUID" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM db_cars.factorys
+        FROM factorys
         where COMPANY_ID = #{companyId}
 	</select>
 </mapper>

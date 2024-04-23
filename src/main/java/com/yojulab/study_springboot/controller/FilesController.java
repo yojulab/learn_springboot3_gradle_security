@@ -2,6 +2,7 @@ package com.yojulab.study_springboot.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -44,22 +45,23 @@ public class FilesController {
     }
 
      @RequestMapping(value = { "/insert" }, method = RequestMethod.POST)
-    public ModelAndView insert(@RequestParam(value="multipartFile", required=false) MultipartFile multipartFile,
-            @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
+    public ModelAndView insert(
+        @RequestParam(value="multipartFile", required=false) MultipartFile multipartFile,
+        @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
         // 폴더 생성
         String storePath = "";
         
-        Map attachfile = null;
+        Map<String, Object> attachfile = null;
         if (multipartFile != null && !multipartFile.isEmpty()){
             String fileUnique = commons.getUniqueSequence();
-            storePath = rootFileFolder + fileUnique + "\\";
+            storePath = Paths.get(rootFileFolder + fileUnique).toString();
             commons.makeFolder(storePath);
             String originalFilename = multipartFile.getOriginalFilename();
-            String storePathFileName = storePath + originalFilename;
+            String storePathFileName = storePath + File.separator + originalFilename;
             multipartFile.transferTo(new File(storePathFileName));
             // 파일 저장 시 중복 유의
-            attachfile = new HashMap();
+            attachfile = new HashMap<String, Object>();
 
             attachfile.put("FILE_UNIQUE", fileUnique);
             attachfile.put("FILE_NAME", originalFilename);
