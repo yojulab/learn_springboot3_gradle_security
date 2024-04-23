@@ -20,7 +20,7 @@
         <div class="container mt-4">
                 <form action="/files/insert" method="post" id="insertForm" enctype="multipart/form-data">
                 <div class="row">
-                    <h1>Insert Form</h1>
+                    <h2>Insert Form</h2>
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>

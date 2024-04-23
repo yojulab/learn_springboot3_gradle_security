@@ -2,18 +2,15 @@
 <!-- Menu -->
 <sec:authentication property="principal" var="userDetailsBean" />
 <form>
+    <div class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="/home">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <button class="nav-link" formaction="/home">Home</button>
-                    </li>
                     <li class="nav-item">
                         <button class="nav-link" formaction="/carInfor/map/selectSearch">Carinfo List</button>
                     </li>
@@ -56,6 +53,7 @@
                 </li>
                 </sec:authorize>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>

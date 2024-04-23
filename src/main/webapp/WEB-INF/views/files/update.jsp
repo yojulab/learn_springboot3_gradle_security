@@ -21,7 +21,7 @@
         <div class="container mt-5">
             <div class="container mt-4">
                 <div class="row">
-                    <h1>update Form</h1>
+                    <h2>update Form</h2>
                     <input type="hidden" name="storePath" value="${storePath}">
 
                     <div class="mb-3">
@@ -46,7 +46,10 @@
 
                         <label for="fileUpload_0" class="form-label">File Upload</label>
                         <input type="file" class="form-control-file" id="fileUpload_0" name="multipartFile"/>
-                        <span><a href="${remoteServerUrl}<%= fileUnique %>/<%= fileName %>"><%= fileUnique %></a></span>
+                        <span>
+                            <a href="${remoteServerUrl}<%= fileUnique %>/<%= fileName %>"><%= fileName %></a>
+                            <img src="${remoteServerUrl}<%= fileUnique %>/<%= fileName %>" alt="" width="30">
+                        </span>
                     </div>
                     <input type="hidden" name="fileUnique" value="<%= fileUnique %>">
                     <%
