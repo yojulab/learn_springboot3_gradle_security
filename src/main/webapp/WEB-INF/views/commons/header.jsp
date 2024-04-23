@@ -27,12 +27,12 @@
                     </sec:authorize>                                     
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
-                        <button class="nav-link" formaction="/admin">Admin</button>
+                        <button class="nav-link" formaction="/admin">role Admin</button>
                     </li>
                     </sec:authorize>   
                     <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')">
                         <li class="nav-item">
-                            <button class="nav-link" formaction="/manager/read">Manager/read</button>
+                            <button class="nav-link" formaction="/manager/read">role Manager</button>
                         </li>
                     </sec:authorize>                                     
                 </ul>

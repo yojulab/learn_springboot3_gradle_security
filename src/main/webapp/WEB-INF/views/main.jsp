@@ -27,13 +27,13 @@
                     <button class="btn btn-primary" type="button" onclick="carTableBody()">Go</button>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-5">
                 <div>Spring Security Area</div>
                 <sec:authentication property="principal" var="userDetailsBean" />
                 <div> userDetails : ${userDetailsBean} </div>
                 <div> Role List : ${userDetailsBean == "anonymousUser" ? "Not Yet!" : userDetailsBean.authorities} </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <table class="table">
                     <thead>
                         <tr>
