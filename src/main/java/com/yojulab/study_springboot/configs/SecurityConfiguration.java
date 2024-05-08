@@ -19,7 +19,7 @@ public class SecurityConfiguration {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
                 // None using csrf protection
-                httpSecurity.csrf().disable();
+                httpSecurity.csrf(csrf -> csrf.disable());
                 // 권한에 대한 부분 : url & roles : user url & roles
                 // url, roles from Dao
                 httpSecurity.authorizeHttpRequests() // 로그인
