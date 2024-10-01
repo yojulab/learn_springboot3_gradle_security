@@ -41,6 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <!--
                         <tr>
                             <td>
                                 <a href="/r/helloWorld">/helloWorld</a>
@@ -51,6 +52,7 @@
                                 <a href="/r/helloWorldGetRequest/yojulab/U-01">/helloWorldGetRequest/{name}/{Id}</a>
                             </td>
                         </tr>
+                    -->
                         <tr>
                             <td>
                                 <a href="/r/helloWorldResponse/1/10/1">/helloWorldResponse/{currentPage}/{perPage}/{SN}</a>
